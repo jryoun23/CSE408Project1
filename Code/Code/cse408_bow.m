@@ -1,3 +1,5 @@
+%Joseph Young jryoun23 1210653766
+
 % function to create a vocabulary from multiple text files under folders
 
 function feat_vec = cse408_bow(filepath, voc)
