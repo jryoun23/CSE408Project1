@@ -14,3 +14,4 @@ while line ~= -1
     
 end
 fclose(fid);
+end
