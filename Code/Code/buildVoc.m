@@ -46,6 +46,9 @@ for file = files'
             currLine = lower(currLine);
             currLine = erase(currLine, ',');
             currLine = erase(currLine, '?');
+            currLine = erase(currLine, '!');
+            currLine = erase(currLine, '&');
+            currLine = erase(currLine, '*');
             currLine = erase(currLine, ';');
             currLine = erase(currLine, ':');
             currLine =  strrep(currLine, '-',' ');
@@ -97,4 +100,10 @@ if isempty(voc)
 elseif ~isempty(voc)
     voc = [voc ; newVoc];
 end     
+%%returning the sorted unique array so we can run it against the others
+strVoc = string(voc);
+strVoc = unique(strVoc);
+strVoc = cellstr(strVoc);
+voc = strVoc;
+% strVoc = unique(voc);
 end
