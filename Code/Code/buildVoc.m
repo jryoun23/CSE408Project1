@@ -44,21 +44,24 @@ for file = files'
         while currLine ~= -1                  %no more lines
             %This is where the line formatting will take place
             currLine = lower(currLine);
-            currLine = erase(currLine, ',');
-            currLine = erase(currLine, '?');
-            currLine = erase(currLine, '!');
-            currLine = erase(currLine, '&');
-            currLine = erase(currLine, '*');
-            currLine = erase(currLine, ';');
-            currLine = erase(currLine, ':');
+            currLine = strrep(currLine, '$',' ' );
+            currLine = strrep(currLine, '\',' ' );
+            currLine = strrep(currLine, '/',' ' );
+            currLine = strrep(currLine, ',',' ' );
+            currLine = strrep(currLine, '?', ' ');
+            currLine = strrep(currLine, '!', ' ');
+            currLine = strrep(currLine, '&', ' ');
+            currLine = strrep(currLine, '*', ' ');
+            currLine = strrep(currLine, ';', ' ');
+            currLine = strrep(currLine, ':', ' ');
             currLine =  strrep(currLine, '-',' ');
             currLine =  strrep(currLine, '_',' ');
-            currLine = erase(currLine, '.');
-            currLine = erase(currLine, '(');
-            currLine = erase(currLine, ')');
-            currLine = strrep(currLine, '’','');
-            currLine = strrep(currLine, '''','');
-            currLine = strrep(currLine, '"','');
+            currLine = strrep(currLine, '.', ' ');
+            currLine = strrep(currLine, '(', ' ');
+            currLine = strrep(currLine, ')', ' ');
+            currLine = strrep(currLine, '’',' ');
+            currLine = strrep(currLine, '''',' ');
+            currLine = strrep(currLine, '"',' ');
             %end line formatting
             
             %removing stopwords

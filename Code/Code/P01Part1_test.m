@@ -31,18 +31,18 @@ for file = files'
     train_feat_set = [train_feat_set,feat_vec'];
 end
 
-% % get files for negative reviews
-% files = dir(fullfile(negFolder,'*.txt'));
-% 
-% % compute BOW feature vector for each file
-% for file = files'
-%     train_label_set = [train_label_set,0];
-%     feat_vec = cse408_bow(fullfile(negFolder,file.name), voc);
-%     train_feat_set = [train_feat_set,feat_vec'];
-% end
-% 
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% % Compute BOW feature vectors for test files
+% get files for negative reviews
+files = dir(fullfile(negFolder,'*.txt'));
+
+% compute BOW feature vector for each file
+for file = files'
+    train_label_set = [train_label_set,0];
+    feat_vec = cse408_bow(fullfile(negFolder,file.name), voc);
+    train_feat_set = [train_feat_set,feat_vec'];
+end
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Compute BOW feature vectors for test files
 % 
 % posFolder = 'C:\Users\bbdud\Documents\CSE408\Project1\Data\Data\kNN\testing\pos';
 % negFolder = 'C:\Users\bbdud\Documents\CSE408\Project1\Data\Data\kNN\testing\neg';

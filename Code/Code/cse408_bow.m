@@ -34,22 +34,25 @@ while line ~= -1
      line = line;    
                     %no more lines
             %This is where the line formatting will take place
-            line = lower(line);
-            line = erase(line, ',');
-            line = erase(line, '?');
-            line = erase(line, '!');
-            line = erase(line, '&');
-            line = erase(line, '*');
-            line = erase(line, ';');
-            line = erase(line, ':');
+             line = lower(line);
+            line = strrep(line, '$',' ' );
+            line = strrep(line, '\',' ' );
+            line = strrep(line, '/',' ' );
+            line = strrep(line, ',',' ' );
+            line = strrep(line, '?', ' ');
+            line = strrep(line, '!', ' ');
+            line = strrep(line, '&', ' ');
+            line = strrep(line, '*', ' ');
+            line = strrep(line, ';', ' ');
+            line = strrep(line, ':', ' ');
             line =  strrep(line, '-',' ');
             line =  strrep(line, '_',' ');
-            line = erase(line, '.');
-            line = erase(line, '(');
-            line = erase(line, ')');
-            line = strrep(line, '’','');
-            line = strrep(line, '''','');
-            line = strrep(line, '"','');
+            line = strrep(line, '.', ' ');
+            line = strrep(line, '(', ' ');
+            line = strrep(line, ')', ' ');
+            line = strrep(line, '’',' ');
+            line = strrep(line, '''',' ');
+            line = strrep(line, '"',' ');
             %end line formatting
             
             %removing stopwords
@@ -84,7 +87,7 @@ for i = 1:size(docVoc')
     find1 = string(docVoc{i});
     for k = i:size(searchVoc')
         find2 = searchVoc(k);
-        if(strcmp(find1,find2))
+        if(contains(find2,find1)) %we're gonna count strings and substrings so that we can give words that are alike higher weight
             feat_vec(k) = feat_vec(k) +1;
         end
     end
