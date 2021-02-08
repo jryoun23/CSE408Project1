@@ -67,6 +67,8 @@ for file = files'
             currLine = strrep(currLine, '<',' ');
             currLine = strrep(currLine, '>',' ');
             currLine = strrep(currLine, ',',' ');
+            currLine = strrep(currLine, '+',' ');
+            currLine = strrep(currLine, '%',' ');
             
             %end line formatting
             
@@ -87,7 +89,7 @@ for file = files'
             while nextToken ~= ""    
                 tokenArray{end+1, 1} = nextToken;    
                 if ~any(strcmp(newVoc,nextToken))
-                    Index = find(strcmp(string(newVoc(:,1),nextToken)));
+                    Index = find(strcmp(string(newVoc(:,1)),nextToken));
                     
                 else
                     [nextToken,currLine] = strtok(currLine);
