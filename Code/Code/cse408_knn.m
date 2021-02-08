@@ -1,5 +1,5 @@
 % function to run KNN classification
-
+%Jospeh Young jryoun23 1210653766
 
 function pred_label = cse408_knn(test_feat_set, train_label, train_feat_set, k, DstType)
 

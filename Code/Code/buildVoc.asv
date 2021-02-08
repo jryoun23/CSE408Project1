@@ -61,13 +61,6 @@ for file = files'
             currLine = strrep(currLine, '''',' ');
             currLine = strrep(currLine, '"',' ');
             currLine = strrep(currLine, '#',' ');
-            currLine = strrep(currLine, '=',' ');
-            currLine = strrep(currLine, '[',' ');
-            currLine = strrep(currLine, ']',' ');
-            currLine = strrep(currLine, '<',' ');
-            currLine = strrep(currLine, '>',' ');
-            currLine = strrep(currLine, ',',' ');
-            
             %end line formatting
             
             %removing stopwords
@@ -87,12 +80,14 @@ for file = files'
             while nextToken ~= ""    
                 tokenArray{end+1, 1} = nextToken;    
                 if ~any(strcmp(newVoc,nextToken))
-                    Index = find(strcmp(string(newVoc(:,1),nextToken)));
+                    Index = find(strcmp(string(newVoc(:,1)),nextToken));
+                    if isempty(newVoc(Index(1), 2)) 
+                        newVoc(Index(1), 2) = 2;
                     
                 else
                     [nextToken,currLine] = strtok(currLine);
                 end
-                [nextToken,currLine] = strtok(currLine);
+                
             end 
             
             %currLine broken into individual words and in tokenArray (cell)
