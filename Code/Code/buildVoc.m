@@ -31,7 +31,6 @@ disp(files)
 for file = files'
     [fid, msg] = fopen(fullfile(folder,file.name), 'rt');
     error(msg);
-    disp(fid);
     line = fgets(fid); % Get the first line from the file.
     
     while line ~= -1 %this is where the shit hits the fan am i right ladies. everything that happens in here happens to every file in the folder.
@@ -69,6 +68,7 @@ for file = files'
             currLine = strrep(currLine, ',',' ');
             currLine = strrep(currLine, '+',' ');
             currLine = strrep(currLine, '%',' ');
+            currLine = strrep(currLine, '`',' ');
             
             %end line formatting
             
@@ -86,13 +86,13 @@ for file = files'
             tokenArray = cell(0,2);
             [nextToken,currLine] = strtok(currLine);
             %while not end of the line we add each token to a token array
-            while nextToken ~= ""    
-                tokenArray{end+1, 1} = nextToken;    
-                if ~any(strcmp(newVoc,nextToken))
+            while nextToken ~= ""              
+                if any(strcmp(newVoc,nextToken)) %if we see the token in newVoc we want to increment the corresponding counter
                     Index = find(strcmp(string(newVoc(:,1)),nextToken));
-                    
-                else
+                    newVoc(Index,:)
+                else %if we see the token in newVoc we DONT want to add it to the token array
                     [nextToken,currLine] = strtok(currLine);
+                    tokenArray{end+1, 1} = nextToken;
                 end
                 [nextToken,currLine] = strtok(currLine);
             end 
